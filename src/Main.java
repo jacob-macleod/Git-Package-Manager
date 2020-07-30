@@ -11,17 +11,17 @@ public class Main {
 		JFrame frame = new JFrame ();
 		
 		//Create Text area for searching
-		JTextArea searchBar = new JTextArea("Search here");
+		JTextArea searchBar = new JTextArea("Search here", 1, 1);
 		
 		JButton b = new JButton("Search");
 		//Parameters are given in x, y, width, height format
-		b.setBounds(130,100,100, 40);
-		searchBar.setBounds(1, 70, 100, 40);
+		b.setBounds(600, 1, 100, 15);
+		searchBar.setBounds(1, 1, 600, 15);
 		
 		//Add an event listener on b
 	    b.addActionListener(new ActionListener(){  
 	    	public void actionPerformed(ActionEvent e){  
-	    	            searchBar.setText("Welcome to Javatpoint.");  
+	    	            searchBar.setText("");  
 	    	        }  
 	    	    });  
 				
