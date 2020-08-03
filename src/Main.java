@@ -1,12 +1,38 @@
 //Import all libraries from java swing - used to generate graphics
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.io.IOException;
+import org.jsoup.Jsoup;
+import org.jsoup.select.*;
+import org.jsoup.helper.*;
+import org.jsoup.internal.*;
+import org.jsoup.nodes.*;
+import org.jsoup.safety.*;
+import org.jsoup.safety.*;
 import javax.swing.*;
 
 public class Main {
 
+	public static void scrape_web_page () {
+		Document doc;
+		try {
+			doc = Jsoup.connect("https://github.com/search?q=git+package+manager&ref=simplesearch/").get();
+			
+			//Get title of page
+			String title = doc.title();
+			System.out.println(title);
+			
+			//Get elements with a href thing
+			Elements links = doc.select("a[href]");
+			String strLinks = links.toString();
+			//We need to split strLinks by href then by " to get the href = "This part only"
+			System.out.println(strLinks);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
+		scrape_web_page();
 		//Generate new window
 		JFrame frame = new JFrame ();
 		
@@ -19,11 +45,12 @@ public class Main {
 		searchBar.setBounds(1, 1, 600, 15);
 		
 		//Add an event listener on b
+		/*
 	    b.addActionListener(new ActionListener(){  
 	    	public void actionPerformed(ActionEvent e){  
 	    	            searchBar.setText("");  
 	    	        }  
-	    	    });  
+	    	    }); */
 				
 		//Actually add the button element
 		frame.add(b);
