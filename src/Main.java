@@ -11,8 +11,17 @@ import org.jsoup.safety.*;
 import javax.swing.*;
 
 public class Main {
+	
+	public static String splitString (String string, String token) {
+		String[] arrOfString = string.split(token, string.length()); 
+		
+		for (String i : arrOfString) {
+			System.out.println(i);	
+		}
+		return string;
+	}
 
-	public static void scrape_web_page () {
+	public static void scrapeWebPage () {
 		Document doc;
 		try {
 			doc = Jsoup.connect("https://github.com/search?q=git+package+manager&ref=simplesearch/").get();
@@ -24,7 +33,8 @@ public class Main {
 			//Get elements with a href thing
 			Elements links = doc.select("a[href]");
 			String strLinks = links.toString();
-			//We need to split strLinks by href then by " to get the href = "This part only"
+			//We need to split strLinks by class then by  href then by " to get the href = "This part only"
+			
 			System.out.println(strLinks);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -32,7 +42,8 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		scrape_web_page();
+		scrapeWebPage();
+		
 		//Generate new window
 		JFrame frame = new JFrame ();
 		
